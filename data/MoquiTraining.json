@@ -1,0 +1,11 @@
+[
+  {"_dataType" : "demo"},
+  {
+    "_entity" : "moqui.training.MoquiTraining",
+    "trainingId": "T8",
+    "trainingName" : "React",
+    "trainingDate" : "2025-1-06",
+    "trainingPrice" : 9000,
+    "trainingDuration":3
+  }
+]
