@@ -1,0 +1,5 @@
+<component name="MoquiTraining" version="1.0.0">
+    <entity location="entity/" />
+    <service location="service/" />
+</component>
+
