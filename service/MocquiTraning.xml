@@ -1,0 +1,16 @@
+<service name="create#MoquiTraining" type="entity-auto" entity-name="MoquiTraining" noun="MocquiTraning" verb="create">
+    <in-parameters>
+        <!-- Input Parameters -->
+        <parameter name="trainingName" type="String" mandatory="true"/>
+        <parameter name="trainingDate" type="Date" format="MM/dd/yyyy" mandatory="true"/>
+    </in-parameters>
+    <validations>
+        <!-- Input Validations -->
+        <validation field="trainingName" type="required"/>
+        <validation field="trainingDate" type="date" format="MM/dd/yyyy"/>
+    </validations>
+    <out-parameters>
+        <!-- Output Parameters -->
+        <parameter name="trainingId" type="String"/>
+    </out-parameters>
+</service>
