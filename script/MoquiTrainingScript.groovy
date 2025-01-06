@@ -1,23 +1,39 @@
-def createMoquiTraining(Map input, ExecutionContext ec) {
-    def trainingName = input.trainingName
-    def trainingDate = ec.l10n.formatDate(input.trainingDate, "MM/dd/yyyy")
+
+import org.moqui.context.ExecutionContext
+import org.moqui.entity.EntityValue
+
+// This script assumes it's running in the context of a Moqui service-call
+ExecutionContext ec = context.ec
+
+// Input parameters
+def trainingName = context.trainingName
+def trainingDate = context.trainingDate
+def trainingPrice = context.trainingPrice
+def trainingDuration = context.trainingDuration
 
 
-    if (!trainingName) {
-        ec.message.addError("trainingName is mandatory")
-        return [:]
-    }
-    if (!trainingDate) {
-        ec.message.addError("trainingDate must follow MM/dd/yyyy format")
-        return [:]
-    }
 
-    def result = ec.service.sync()
-            .name("create#MoquiTraining")
-            .parameters([trainingName: trainingName, trainingDate: trainingDate])
-            .call()
-
-    return [
-            trainingId: result.trainingId
-    ]
+// Validate required fields
+if (!trainingName) {
+    ec.message.addError("Training name is required.")
+    return
 }
+
+if (!trainingDate) {
+    ec.message.addError("Training date is required.")
+    return
+}
+
+// Explicitly generate a unique ID
+def trainingID = ec.entity.sequencedIdPrimary("MoquiTraining", null, null)
+
+// Create the MoquiTraining entity record
+EntityValue trainingRecord = ec.entity.makeValue "moqui.training.MoquiTraining"
+
+
+trainingRecord.set("trainingId", trainingId) // Explicitly set trainingId
+trainingRecord.set("trainingName", trainingName)
+trainingRecord.set("trainingDate", trainingDate)
+
+// Set the output parameter
+context.trainingID = trainingRecord.get("trainingId")

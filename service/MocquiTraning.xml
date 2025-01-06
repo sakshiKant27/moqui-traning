@@ -1,16 +1,88 @@
-<service name="create#MoquiTraining" type="entity-auto" entity-name="MoquiTraining" noun="MocquiTraning" verb="create">
-    <in-parameters>
-        <!-- Input Parameters -->
-        <parameter name="trainingName" type="String" mandatory="true"/>
-        <parameter name="trainingDate" type="Date" format="MM/dd/yyyy" mandatory="true"/>
-    </in-parameters>
-    <validations>
-        <!-- Input Validations -->
-        <validation field="trainingName" type="required"/>
-        <validation field="trainingDate" type="date" format="MM/dd/yyyy"/>
-    </validations>
-    <out-parameters>
-        <!-- Output Parameters -->
-        <parameter name="trainingId" type="String"/>
-    </out-parameters>
-</service>
+
+
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-3.xsd">
+    <service verb="create" noun="MoquiTraining" type="entity-auto">
+        <in-parameters>
+            <auto-parameters entity-name="MoquiTraining" include="nonpk"/>
+            <parameter name="trainingName" required="true"/>
+            <parameter name="trainingDate" required="true"/>
+        </in-parameters>
+        <out-parameters>
+            <auto-parameters include="pk" required="true"/>
+        </out-parameters>
+    </service>
+
+<!--    Service Through Inline-->
+    <service verb="create" noun="MoquiTrainingInline">
+        <in-parameters>
+            <auto-parameters entity-name="moqui.training.MoquiTraining" include="nonpk"/>
+            <parameter name="trainingName" required="true"/>
+            <parameter name="trainingDate" required="true"/>
+        </in-parameters>
+        <out-parameters>
+            <parameter name="trainingId"/>
+        </out-parameters>
+        <actions>
+            <service-call name="create#moqui.training.MoquiTraining" in-map="context" out-map="context"/>
+        </actions>
+    </service>
+
+
+
+
+    <!--     3 rd task  from groovy -->
+        <service verb="create" noun="MoquiTraining" type="script" location="component://moqui-training/script/MoquiTrainingScript.groovy" >
+        <in-parameters>
+            <auto-parameters  entity-name="MoquiTraining" include="nonpk"/>
+            <parameter name="trainingName" required="true"/>
+            <parameter name="trainingDate" required="true"/>
+        </in-parameters>
+
+        <out-parameters>
+            <auto-parameters include="pk" required="true"/>
+        </out-parameters>
+
+
+
+    </service>
+
+           <!--  Fetch record -->
+    <service verb="find" noun="MoquiTraining" >
+        <in-parameters>
+            <parameter name="trainingName" entity-name="moqui.training.MoquiTraining"/>
+            <parameter name="trainingId" entity-name="moqui.training.MoquiTraining"/>
+        </in-parameters>
+        <out-parameters>
+            <parameter name="trainingList" required="true"/>
+        </out-parameters>
+        <actions>
+            <entity-find entity-name="moqui.training.MoquiTraining" list="trainingList">
+                <econdition field-name="trainingName" ignore-if-empty="true"/>
+                <econdition field-name="trainingId" ignore-if-empty="true"/>
+                <select-field field-name="trainingId"/>
+                <select-field field-name="trainingName"/>
+                <select-field field-name="trainingDate"/>
+            </entity-find>
+        </actions>
+    </service>
+
+<!--    To create or upadate if already -->
+        <service verb="store" noun="MoquiTraining" type="script" location="component://moqui-training/script/MoquiTrainingStoreScript.groovy">
+            <in-parameters>
+                <parameter name="trainingName" />
+                <parameter name="trainingDate" format="MM/yyyy">
+                    <time-range after="now" format="MM//yyyy"/>
+                </parameter>
+                <parameter name="trainingId"/>
+                <parameter name="trainingPrice"/>
+                <parameter name="trainingDuration"/>
+
+            </in-parameters>
+
+                <out-parameters>
+                    <parameter name="trainingId"/>
+                </out-parameters>22q
+    </service>
+
+
+</services>

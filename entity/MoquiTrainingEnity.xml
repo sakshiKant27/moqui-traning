@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.w3.org/2001/XMLSchema-instance">
-    <entity entity-name="MoquiTraining" package="moqui.training">
-        <field name="trainingId" type="id" is-pk="true" />
-        <field name="trainingName" type="text-medium" />
-        <field name="trainingDate" type="date" />
-        <field name="trainingPrice" type="currency-amount" />
-        <field name="trainingDuration" type="number-integer" />
-    </entity>
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="file://C:/Users/MSI Laptop/Desktop/Sandbox1/moqui-framework/framework/xsd/entity-definition-3.xsd"
+          xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/moqui-conf-3.xsd">
+<entity entity-name="MoquiTraining" package="moqui.training">
+    <field name="trainingId" type="id" is-pk="true" />
+    <field name="trainingName" type="text-medium" required="true"/>
+    <field name="trainingDate" type="date" />
+    <field name="trainingPrice" type="currency-amount" />
+    <field name="trainingDuration" type="number-integer" />
+</entity>
+
 </entities>
