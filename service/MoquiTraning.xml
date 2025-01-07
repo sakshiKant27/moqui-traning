@@ -66,7 +66,7 @@
         </actions>
     </service>
 
-<!--    To create or upadate if already -->
+<!--    To create or update if already -->
         <service verb="store" noun="MoquiTraining" type="script" location="component://moqui-training/script/MoquiTrainingStoreScript.groovy">
             <in-parameters>
                 <parameter name="trainingName" />
@@ -81,7 +81,7 @@
 
                 <out-parameters>
                     <parameter name="trainingId"/>
-                </out-parameters>22q
+                </out-parameters>
     </service>
 
 

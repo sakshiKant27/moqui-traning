@@ -5,9 +5,9 @@
           xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/moqui-conf-3.xsd">
 <entity entity-name="MoquiTraining" package="moqui.training">
     <field name="trainingId" type="id" is-pk="true" />
-    <field name="trainingName" type="text-medium" required="true"/>
+    <field name="trainingName" type="text-medium" />
     <field name="trainingDate" type="date" />
-    <field name="trainingPrice" type="currency-amount" />
+    <field name="trainingPrice" type="text-medium" />
     <field name="trainingDuration" type="number-integer" />
 </entity>
 

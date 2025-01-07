@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="file://C:/Users/MSI Laptop/Desktop/Sandbox1/moqui-framework/framework/xsd/entity-definition-3.xsd"
+        xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/moqui-conf-3.xsd">
+    <entity entity-name="OrderItem" package="moqui.orderitem">
+        <field name="orderItemSeqId" type="text-medium"  is-pk="true"/>
+        <field name="quantity" type="number-integer" not-null="true"/>
+        <field name="status" type="text-medium"/>
+        <field name="orderId" type="text-medium" />
+        <field name="productId" type="text-medium"/>
+        <relationship type="one" related="moqui.product.Product">
+            <key-map field-name="productId" related="productId"/>
+        </relationship>
+        <relationship type="one" related="moqui.orderheader.OrderHeader">
+        <key-map field-name="orderId" related="orderId"/>
+        </relationship>
+
+    </entity>
+</entities>
+

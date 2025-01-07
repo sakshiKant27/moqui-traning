@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="file://C:/Users/MSI Laptop/Desktop/Sandbox1/moqui-framework/framework/xsd/entity-definition-3.xsd"
+        xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/moqui-conf-3.xsd">
+    <entity entity-name="Product" package="moqui.product">
+        <field name="productId" type="text-medium"  is-pk="true"/>
+        <field name="productName" type="text-medium" not-null="true"/>
+        <field name="color" type="text-medium"/>
+        <field name="size" type="text-medium"/>
+    </entity>
+</entities>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-3.xsd">
+
+    <service verb="create" noun="Party" type="entity-auto" >
+        <in-parameters>
+     <!--            <auto-parameters include="nonpk"/>-->
+            <parameter name="partyId" required="true"/>
+            <parameter name="partyType" required="true"/>
+            <parameter name="firstName" required="true"/>
+            <parameter name="lastName" required="true"/>
+        </in-parameters>
+        <out-parameters>
+            <auto-parameters include="pk" />
+        </out-parameters>
+    </service>
+
+    <!--  Update API Code  -->
+    <service verb="update" noun="Party" type="entity-auto">
+        <in-parameters>
+            <auto-parameters entity-name="moqui.party.Party" include="all"/>
+        </in-parameters>
+        <out-parameters>
+            <parameter name="lastName"/>
+        </out-parameters>
+    </service>
+
+    <!--  Delete API Code   -->
+                <service verb="delete" noun="Party">
+                    <in-parameters>
+                        <auto-parameters entity-name="moqui.party.Party" include="pk"/>
+                    </in-parameters>
+                <actions>
+                <entity-find-one entity-name="moqui.party.Party" value-field="entityans"/>
+                    <if condition="entityans!=null">
+                        <entity-delete value-field="entityans"/>
+                    </if>
+                </actions>
+                </service>
+
+    <!--- Contact Create -->
+    <service verb="create" noun="ContactMech" type="entity-auto">
+        <in-parameters>
+            <parameter name="streetAddress" required="true"/>
+            <parameter name="city" required="true"/>
+            <parameter name="state" required="true"/>
+            <parameter name="postalCode" required="true"/>
+            <parameter name="partyId" required="true"/>
+        </in-parameters>
+        <out-parameters>
+            <auto-parameters include="pk" required="true"/>
+        </out-parameters>
+    </service>
+
+    <service verb="update" noun="ContactMech" type="entity-auto">
+        <in-parameters>
+            <auto-parameters entity-name="moqui.contactmech.ContactMech" include="all"/>
+        </in-parameters>
+    </service>
+
+
+
+</services>
+
+
+
+
+
+
+

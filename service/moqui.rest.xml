@@ -1,0 +1,65 @@
+<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/rest-api-3.xsd"
+    name="PartyAPI" displayName="PartyRESTAPI" version="2.0.0">
+
+    <resource name="Parties" require-authentication="anonymous-all">
+        <method type="get">
+            <entity name="partyExample" operation="list"/>
+        </method>
+        <id name="partyId">
+        <method type="get">
+            <entity name="partyExample"  operation="one"/>
+        </method>
+
+            <!---  Contacts -->
+            <resource name="contacts" >
+                <method type="post">
+                    <service name="ServiceRestTraining.PartyService.create#ContactMech"/>
+                </method>
+                <method type ="get">
+                   <entity name="ContactMech" operation="one"/>
+                </method>
+                <id name="contactMechId">
+                    <method type ="put">
+                    <service name="ServiceRestTraining.PartyService.update#ContactMech"/>
+                    </method>
+                </id>
+
+            </resource>
+
+
+        </id>
+    </resource>
+
+
+    <resource name="partyPUT" require-authentication="anonymous-all">
+        <id name="partyId">
+        <method type="put">
+            <service name="ServiceRestTraining.PartyService.update#Party"/>
+
+        </method>
+        </id>
+    </resource>
+
+
+
+
+
+    <resource name="PartiesPost" require-authentication="anonymous-all">
+    <method type="post">
+        <service name="ServiceRestTraining.PartyService.create#Party"/>
+    </method>
+    </resource>
+
+
+
+    <resource name="parties" require-authentication="anonymous-all">
+        <id name="partyId">
+            <method type="delete">
+                <service name="ServiceRestTraining.PartyService.delete#Party"/>
+            </method>
+        </id>
+    </resource>
+
+
+</resource>
