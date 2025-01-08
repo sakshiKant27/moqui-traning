@@ -8,6 +8,7 @@
         <field name="status" type="text-medium"/>
         <field name="orderId" type="text-medium" />
         <field name="productId" type="text-medium"/>
+
         <relationship type="one" related="moqui.product.Product">
             <key-map field-name="productId" related="productId"/>
         </relationship>

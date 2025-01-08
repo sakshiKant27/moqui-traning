@@ -47,7 +47,7 @@
             <parameter name="partyId" required="true"/>
         </in-parameters>
         <out-parameters>
-            <auto-parameters include="pk" required="true"/>
+
         </out-parameters>
     </service>
 
@@ -56,6 +56,18 @@
             <auto-parameters entity-name="moqui.contactmech.ContactMech" include="all"/>
         </in-parameters>
     </service>
+
+        <service verb="delete" noun="ContactMech" type ="entity-auto">
+            <in-parameters>
+               <parameter name="contactMechId" required="true"/>
+                <parameter name="partyId" required="true"/>
+            </in-parameters>
+            <out-parameters>
+                <parameter name="partyId"/>
+            </out-parameters>
+        </service>
+
+            <!-- Task 4 for product -->
 
 
 
