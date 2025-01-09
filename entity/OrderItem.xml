@@ -12,7 +12,7 @@
         <relationship type="one" related="moqui.product.Product">
             <key-map field-name="productId" related="productId"/>
         </relationship>
-        <relationship type="one" related="moqui.orderheader.OrderHeader">
+        <relationship type="one" related="moquitraining.header.OrderHeader">
         <key-map field-name="orderId" related="orderId"/>
         </relationship>
 

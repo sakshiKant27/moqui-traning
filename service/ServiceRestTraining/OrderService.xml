@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-3.xsd">
+
+
+    <service verb="create" noun="OrderHeader" type="entity-auto" >
+        <in-parameters>
+            <auto-parameters include="all"/>
+        </in-parameters>
+        <out-parameters>
+            <auto-parameters include="pk" required="true"/>
+        </out-parameters>
+    </service>
+
+
+    <service verb="delete" noun="OrderHeader" type="entity-auto">
+        <in-parameters>
+            <auto-parameters include="pk" required="true" />
+        </in-parameters>
+    </service>
+
+
+    <service verb="update" noun="OrderHeader" type="entity-auto">
+        <in-parameters>
+            <auto-parameters entity-name="moquitraining.header.OrderHeader" include="all"/>
+        </in-parameters>
+    </service>
+
+
+    <service verb="create" noun="OrderItem" type="entity-auto">
+        <in-parameters>
+            <parameter name="orderItemSeqId" required="true"/>
+            <parameter name="quantity" required="true"/>
+            <parameter name="status" required="true"/>
+            <parameter name="orderId" required="true"/>
+            <parameter name="productId" required="true"/>
+        </in-parameters>
+
+
+
+        <out-parameters>
+            <auto-parameters include="pk" required="true"/>
+        </out-parameters>
+    </service>
+</services>
