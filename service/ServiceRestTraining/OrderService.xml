@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-3.xsd">
 
-
     <service verb="create" noun="OrderHeader" type="entity-auto" >
         <in-parameters>
             <auto-parameters include="all"/>
@@ -10,22 +9,34 @@
             <auto-parameters include="pk" required="true"/>
         </out-parameters>
     </service>
-
-
-    <service verb="delete" noun="OrderHeader" type="entity-auto">
+    <service verb="delete" noun="OrderHeader" >
         <in-parameters>
             <auto-parameters include="pk" required="true" />
         </in-parameters>
+        <out-parameters>
+            <auto-parameters include="pk" required="true"/>
+        </out-parameters>
+        <actions>
+                <entity-find-one entity-name="moquitraining.header.OrderHeader" value-field="entityData">
+                        <field-map field-name="orderId" from="context.orderId"/>
+                </entity-find-one>
+                       <!-- Condition checked if related to Order_item-->
+         <if condition="entityData != null" >
+             <entity-find-related value-field="entityData" relationship-name="OrderItem" list="filterList"/>
+             <if condition="filterList">
+                 <return error="false" message="cannot delete '${orderId}' because violation of foreign-integrity constraints"/>
+             </if>
+            <else>
+              <entity-delete value-field="entityData"/>
+            </else>
+         </if>
+        </actions>
     </service>
-
-
     <service verb="update" noun="OrderHeader" type="entity-auto">
         <in-parameters>
             <auto-parameters entity-name="moquitraining.header.OrderHeader" include="all"/>
         </in-parameters>
     </service>
-
-
     <service verb="create" noun="OrderItem" type="entity-auto">
         <in-parameters>
             <parameter name="orderItemSeqId" required="true"/>
@@ -34,9 +45,6 @@
             <parameter name="orderId" required="true"/>
             <parameter name="productId" required="true"/>
         </in-parameters>
-
-
-
         <out-parameters>
             <auto-parameters include="pk" required="true"/>
         </out-parameters>

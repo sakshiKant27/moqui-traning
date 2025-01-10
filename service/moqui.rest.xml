@@ -5,14 +5,23 @@
 
         <resource name="Parties" require-authentication="anonymous-all">
             <method type="get">
-                <entity name="partyExample" operation="list"/>
+                <entity name="Party" operation="list"/>
+            </method>
+            <method type="post">
+              <service name="ServiceRestTraining.PartyService.create#Party"/>
             </method>
             <id name="partyId">
             <method type="get">
-                <entity name="partyExample"  operation="one"/>
+                <entity name="Party"  operation="one"/>
             </method>
+                <method type="put">
+                    <service name="ServiceRestTraining.PartyService.update#Party"/>
+                </method>
+                    <method type="delete">
+                        <service name="ServiceRestTraining.PartyService.delete#Party"/>
+                    </method>
 
-                <!---  Contacts -->
+                   <!---  Contacts -->
                 <resource name="contacts" >
                     <method type="post">
                         <service name="ServiceRestTraining.PartyService.create#ContactMech"/>
@@ -22,6 +31,7 @@
                     </method>
              <!--         Through ContactmechId-->
                     <id name="contactMechId">
+
                         <method type ="put">
                         <service name="ServiceRestTraining.PartyService.update#ContactMech"/>
                         </method>
@@ -34,35 +44,11 @@
             </id>
         </resource>
 
-        <resource name="partyPUT" require-authentication="anonymous-all">
-            <id name="partyId">
-            <method type="put">
-                <service name="ServiceRestTraining.PartyService.update#Party"/>
-
-            </method>
-            </id>
-        </resource>
-
-        <resource name="PartiesPost" require-authentication="anonymous-all">
-        <method type="post">
-            <service name="ServiceRestTraining.PartyService.create#Party"/>
-        </method>
-        </resource>
-
-        <resource name="parties" require-authentication="anonymous-all">
-            <id name="partyId">
-                <method type="delete">
-                    <service name="ServiceRestTraining.PartyService.delete#Party"/>
-                </method>
-            </id>
-        </resource>
-
-
         <resource name="Products" require-authentication="anonymous-all">
             <method type="post">
                 <service name="ServiceRestTraining.ProductService.create#Product"/>
             </method>
-            <id name="productIcd">
+            <id name="productId">
                 <method type="put">
                     <service name="ServiceRestTraining.ProductService.update#Product"/>
                 </method>
@@ -73,14 +59,13 @@
                         <service name="ServiceRestTraining.ProductService.delete#Product"/>
                 </method>
             </id>
-
     </resource>
 
-<!--    ORDER API-->
-    <resource name="Order"  require-authentication="anonymous-all">
+                   <!--    ORDER API-->
+    <resource name="Order" require-authentication="anonymous-all">
         <method type="post">
         <service name="ServiceRestTraining.OrderService.create#OrderHeader"/>
-    </method>
+       </method>
     <id name="orderId">
         <method type="put">
             <service name="ServiceRestTraining.OrderService.update#OrderHeader"/>
@@ -91,7 +76,6 @@
         <method type="delete">
             <service name="ServiceRestTraining.OrderService.delete#OrderHeader"/>
         </method>
-
         <resource name ="items" require-authentication="anonymous-all">
             <method type="post">
                 <service name="ServiceRestTraining.OrderService.create#OrderItem"/>
@@ -99,6 +83,4 @@
         </resource>
     </id>
     </resource>
-
-
     </resource>

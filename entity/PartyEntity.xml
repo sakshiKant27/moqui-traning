@@ -2,7 +2,8 @@
 <entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns="file://C:/Users/MSI Laptop/Desktop/Sandbox1/moqui-framework/framework/xsd/entity-definition-3.xsd"
             xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/moqui-conf-3.xsd">
-        <entity entity-name="Party" package="moqui.party" short-alias="partyExample">
+<!--        short-alias="partyExample"-->
+        <entity entity-name="Party" package="moqui.party">
         <field name="partyId" type="id"  is-pk="true"/>
         <field name="partyType" type="text-medium" not-null="true"/>
         <field name="firstName" type="text-medium"/>

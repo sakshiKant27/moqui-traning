@@ -3,7 +3,6 @@
 
     <service verb="create" noun="Party" type="entity-auto" >
         <in-parameters>
-     <!--            <auto-parameters include="nonpk"/>-->
             <parameter name="partyId" required="true"/>
             <parameter name="partyType" required="true"/>
             <parameter name="firstName" required="true"/>
@@ -56,7 +55,6 @@
             <auto-parameters entity-name="moqui.contactmech.ContactMech" include="all"/>
         </in-parameters>
     </service>
-
         <service verb="delete" noun="ContactMech" type ="entity-auto">
             <in-parameters>
                <parameter name="contactMechId" required="true"/>
@@ -66,11 +64,6 @@
                 <parameter name="partyId"/>
             </out-parameters>
         </service>
-
-
-
-
-
 </services>
 
 
